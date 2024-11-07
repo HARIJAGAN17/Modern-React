@@ -148,6 +148,5 @@ const secondBook = getBook(2);
 
 const { title, author, genres } = secondBook;
 
-title;
-author;
-genres;
+const arr = genres;
+console.log(arr[2])
