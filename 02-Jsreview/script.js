@@ -150,3 +150,15 @@ const { title, author, genres } = secondBook;
 
 const arr = genres;
 console.log(arr[2])
+
+//Rest or spread operator
+
+const updatedGenere = ["LCU",...genres]; //extended the data
+updatedGenere;
+
+const fifthBook = getBook(5);
+
+const updatedFifith = {...fifthBook,pages:1000}; //updated the page
+
+updatedFifith
+
