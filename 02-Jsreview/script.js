@@ -162,3 +162,7 @@ const updatedFifith = {...fifthBook,pages:1000}; //updated the page
 
 updatedFifith
 
+const bookData = getBooks();
+
+const AdventureBooks = bookData.filter((book)=> book.genres.includes('adventure')).map((book)=>book.title);
+AdventureBooks
