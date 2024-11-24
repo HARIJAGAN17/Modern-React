@@ -144,25 +144,29 @@ function getBook(id) {
 }
 
 //destructing objects and array
-const secondBook = getBook(2);
+// const secondBook = getBook(2);
 
-const { title, author, genres } = secondBook;
+// const { title, author, genres } = secondBook;
 
-const arr = genres;
-console.log(arr[2])
+// const arr = genres;
+// console.log(arr[2])
 
-//Rest or spread operator
+// //Rest or spread operator
 
-const updatedGenere = ["LCU",...genres]; //extended the data
-updatedGenere;
+// const updatedGenere = ["LCU",...genres]; //extended the data
+// updatedGenere;
 
-const fifthBook = getBook(5);
+// const fifthBook = getBook(5);
 
-const updatedFifith = {...fifthBook,pages:1000}; //updated the page
+// const updatedFifith = {...fifthBook,pages:1000}; //updated the page
 
-updatedFifith
+// updatedFifith
 
-const bookData = getBooks();
+// const bookData = getBooks();
 
-const AdventureBooks = bookData.filter((book)=> book.genres.includes('adventure')).map((book)=>book.title);
-AdventureBooks
+// const AdventureBooks = bookData.filter((book)=> book.genres.includes('adventure')).map((book)=>book.title);
+// AdventureBooks
+
+fetch ("https://jsonplaceholder.typicode.com/todos").then(response=>response.json()).then(data=>console.log(data));
+
+console.log("jonas")
