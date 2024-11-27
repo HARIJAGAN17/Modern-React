@@ -81,7 +81,7 @@ function App() {
       price: 89.99,
       active: false,
       quantity: 1,
-      isInBag: false,
+      isInBag: true,
     },
   ];
 
@@ -90,22 +90,24 @@ function App() {
       <section className="items">
         <h4>Jersey Shop Made with React JS</h4>
 
-       {items.map((item)=>
-        <div className="product" key={item.id}>
-        <div className="photo">
-          <img src={"./img/" + item.photo} />
-        </div>
-        <div className="description">
-          <span className="name">{item.name}</span>
-          <span className="price">{item.price}</span>
-          <div className="quantity-area">
-            <button>-</button>
-            <span className="quantity">{item.quantity}</span>
-            <button>+</button>
+        {items.map((item) => (
+          <div className={ `product ${item.isInBag ?"selected":""}`} key={item.id}>
+            <div className="photo">
+              <img src={"./img/" + item.photo} />
+            </div>
+            <div className="description">
+              <span className="name">{item.name}</span>
+              <span className="price">{item.price}</span>
+              {item.isInBag && (
+                <div className="quantity-area">
+                  <button>-</button>
+                  <span className="quantity">{item.quantity}</span>
+                  <button>+</button>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </div>
-       )}
+        ))}
       </section>
 
       <section className="summary">

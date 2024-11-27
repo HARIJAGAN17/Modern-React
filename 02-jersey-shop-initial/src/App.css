@@ -43,7 +43,7 @@ section.items .product {
 }
 
 section.items .product.selected {
-  border: 3px solid rgb(220, 75, 39);
+  border: 2px solid rgb(220, 75, 39);
 
 }
 
