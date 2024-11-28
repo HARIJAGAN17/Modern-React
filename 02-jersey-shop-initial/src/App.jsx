@@ -95,7 +95,11 @@ function App() {
         <h4>Jersey Shop Made with React JS</h4>
 
         {items.map((item) => (
-          <Item item = {item} key={item.id}/>
+          <Item 
+            item = {item} 
+            key={item.id}
+            selected = {(id)=>{alert(`pressed - ${id}`)}}
+          />
         ))}
       </section>
 

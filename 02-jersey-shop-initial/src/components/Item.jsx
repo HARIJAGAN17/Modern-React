@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 function Item (props){
     return (
-        <div className={ `product ${props.item.isInBag ?"selected":""}`}>
+        <div onClick={()=>{props.selected(props.item.id)}} className={ `product ${props.item.isInBag ?"selected":""}`}>
             <div className="photo">
               <img src={"./img/" + props.item.photo} />
             </div>
