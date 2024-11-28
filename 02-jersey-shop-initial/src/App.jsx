@@ -1,4 +1,5 @@
 import "./App.css";
+import OrderDetails from "./components/OrderDetails";
 
 function App() {
   const items = [
@@ -81,7 +82,7 @@ function App() {
       price: 89.99,
       active: false,
       quantity: 1,
-      isInBag: true,
+      isInBag: false,
     },
   ];
 
@@ -110,28 +111,7 @@ function App() {
         ))}
       </section>
 
-      <section className="summary">
-        <strong>Order Details</strong>
-        <table>
-          <thead>
-            <tr>
-              <th>Item</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1x Real Madrid</td>
-              <td>$ 119.99</td>
-            </tr>
-
-            <tr>
-              <th>Total</th>
-              <th>$ 119.99</th>
-            </tr>
-          </tbody>
-        </table>
-      </section>
+      <OrderDetails/>
     </>
   );
 }
