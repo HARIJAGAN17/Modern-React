@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   background-color: #7ccb8e;
 }
 
@@ -13,7 +13,7 @@ main > section.items h4 {
 main {
   display: flex;
   justify-content: center;
-  align-items:flex-start;
+  align-items: flex-start;
   flex-wrap: wrap;
   padding: 20px 0;
   width: 100%;
@@ -29,7 +29,6 @@ main > section.items {
   max-width: 800px;
   min-width: 300px;
   justify-content: center;
-  
 }
 
 section.items .product {
@@ -39,12 +38,11 @@ section.items .product {
   flex: 0 0 calc(33.333% - 36px);
   cursor: pointer;
   text-align: center;
-  border-radius: 20px 20px 0 0 ;
+  border-radius: 20px 20px 0 0;
 }
 
 section.items .product.selected {
   border: 2px solid rgb(220, 75, 39);
-
 }
 
 section.items .photo img {
@@ -60,12 +58,12 @@ section.items .description {
   line-height: 15px;
 }
 
-section.items  .description .price {
+section.items .description .price {
   font-weight: bold;
   margin: 4px auto;
 }
 
-section.items  .description .quantity-area {
+section.items .description .quantity-area {
   padding: 12px;
   margin-top: 16px;
   box-sizing: border-box;
@@ -73,7 +71,7 @@ section.items  .description .quantity-area {
   font-size: 18px;
 }
 
-section.items  .description .quantity-area button {
+section.items .description .quantity-area button {
   width: 26px;
   height: 26px;
   margin: 0 6px;
@@ -88,15 +86,14 @@ section.items  .description .quantity-area button {
   background-color: rgb(223, 223, 223);
 }
 
-section.items  .description .quantity-area .quantity {
+section.items .description .quantity-area .quantity {
   font-weight: bold;
   margin: 0 4px;
 }
 
-section.items  .description .quantity-area button:focus {
-  outline:0;
+section.items .description .quantity-area button:focus {
+  outline: 0;
 }
-
 
 section.summary {
   background-color: rgb(245, 245, 245);
@@ -122,5 +119,6 @@ section.summary table tbody tr:last-of-type th {
   padding: 10px 0;
 }
 
-
-
+.quantityButton:hover {
+  color: white;
+}

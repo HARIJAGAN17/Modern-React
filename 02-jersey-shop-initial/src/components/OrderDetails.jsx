@@ -24,7 +24,7 @@ function OrderDetails(props) {
             {props.itemsBag.map((item) => (
               <tr>
                 <td>{item.name}</td>
-                <td>$ {item.price}</td>
+                <td>$ {item.quantity} x {item.price}</td>
               </tr>
             ))}
 

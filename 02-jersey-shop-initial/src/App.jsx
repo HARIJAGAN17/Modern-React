@@ -99,6 +99,14 @@ function App() {
     
     setItem(items.map(el=> el.id===id? item:el));
   }
+
+  function quantityHandler(event,id,increment){
+    event.stopPropagation();
+    let item = items.filter(item=> item.id===id)[0];
+    item.quantity+=increment;
+    setItem(items.map(el=>el.id===id? item:el))
+  }
+
   return (
     <>
       <section className="items">
@@ -109,6 +117,7 @@ function App() {
             item = {item} 
             key={item.id}
             selected = {(id)=>setHandler(id)}
+            quantityIncreaser= {(event,id,increment)=>quantityHandler(event,id,increment)}
           />
         ))}
       </section>

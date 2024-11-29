@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 function Item (props){
+
+    
     return (
         <div onClick={()=>{props.selected(props.item.id)}} className={ `product ${props.item.isInBag ?"selected":""}`}>
             <div className="photo">
@@ -10,9 +12,9 @@ function Item (props){
               <span className="price">{props.item.price}</span>
               {props.item.isInBag && (
                 <div className="quantity-area">
-                  <button>-</button>
+                  <button className="quantityButton" disabled={props.item.quantity<=1} onClick={(event)=>props.quantityIncreaser(event,props.item.id,-1)}>-</button>
                   <span className="quantity">{props.item.quantity}</span>
-                  <button>+</button>
+                  <button className="quantityButton" onClick={(event)=>props.quantityIncreaser(event,props.item.id,+1)}>+</button>
                 </div>
               )}
             </div>
