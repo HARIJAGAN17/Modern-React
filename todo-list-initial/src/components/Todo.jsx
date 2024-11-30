@@ -1,3 +1,4 @@
+import './Todo.scss'
 
 function Todo({ title, description, isDone }) {
 

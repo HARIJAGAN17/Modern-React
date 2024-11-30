@@ -1,3 +1,4 @@
+import './Filter.scss'
 
 function Filter() {
 
