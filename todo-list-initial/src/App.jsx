@@ -1,7 +1,6 @@
 import Header from './components/Header.jsx';
 import Home from './views/Home.jsx';
 import "./App.scss";
-import Filter from './components/FooterFilters.jsx';
 
 function App() {
 
@@ -13,7 +12,6 @@ function App() {
 
         <Home />
 
-        <Filter/>
         
       </main>
     </>
