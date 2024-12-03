@@ -24,7 +24,6 @@ const initialTodos = [
 ];
 
 function TodosList() {
-
   const [todos, setTodos] = useState(initialTodos);
 
   function deleteHandler(id) {
@@ -34,9 +33,16 @@ function TodosList() {
   }
 
   function toggleIsDoneHandler(id) {
-
-    
-
+    setTodos(
+      todos.map((item) => {
+        if (item.id === id) {
+          item.isDone = !item.isDone;
+          return item;
+        } else {
+          return item;
+        }
+      })
+    );
   }
 
   return (
