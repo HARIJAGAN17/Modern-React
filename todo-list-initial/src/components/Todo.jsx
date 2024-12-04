@@ -1,12 +1,19 @@
 import "./Todo.scss";
+import { useContext } from "react";
+import TodosContext from "../TodosContext.js";
 
 function Todo(props) {
+  const store = useContext(TodosContext);
+
   return (
     <>
       <div className={`todo ${props.todo.isDone ? "done" : ""}`}>
         <button
           onClick={() => {
-            props.deleteTodo(props.todo.id);
+            store.dispatch({
+              type: "deleted",
+              elId: props.todo.id,
+            });
           }}
           className="erase"
         >
@@ -17,7 +24,10 @@ function Todo(props) {
         <div className="task-check">
           <input
             onClick={() => {
-              props.toggleIsonde(props.todo.id);
+              store.dispatch({
+                type: "toggle",
+                elId: props.todo.id,
+              });
             }}
             type="checkbox"
             defaultChecked={props.todo.isDone}
