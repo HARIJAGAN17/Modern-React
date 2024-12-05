@@ -1,42 +1,18 @@
 import Header from "./components/Header.jsx";
 import Home from "./views/Home.jsx";
 import "./App.scss";
-import { useReducer } from "react";
-import TodosContext from "./TodosContext.js";
-import TodosReducer from "./TodosReducer.js";
 
-const initialTodos = [
-  {
-    id: 0,
-    title: "Do Groceries",
-    description: "Buy apples, rice, juice and toilet paper.",
-    isDone: true,
-  },
-  {
-    id: 1,
-    title: "Study React",
-    description: "Understand context & reducers.",
-    isDone: false,
-  },
-  {
-    id: 2,
-    title: "Learn Redux",
-    description: "Learn state management with Redux",
-    isDone: false,
-  },
-];
+import TodosProvider from "./TodosContext.jsx";
 
 function App() {
-  const [todos, dispatch] = useReducer(TodosReducer,initialTodos);
-
   return (
     <>
       <main>
-        <TodosContext.Provider value ={{todos,dispatch}}>
+        <TodosProvider>
           <Header appName="To-Do List with React" />
 
           <Home />
-        </TodosContext.Provider>
+        </TodosProvider>
       </main>
     </>
   );
