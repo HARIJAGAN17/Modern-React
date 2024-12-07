@@ -1,6 +1,8 @@
 import "./Header.scss";
+import { useTodos } from "../TodosContext";
 
 function Header({ appName }) {
+  const store = useTodos();
   return (
     <>
       <div className="header">
@@ -9,7 +11,14 @@ function Header({ appName }) {
             <h1>{appName}</h1>
           </div>
           <div className="header-side">
-            <button className="btn secondary">+ Add To-Do</button>
+            <button
+              onClick={() => {
+                store.setModals(true);
+              }}
+              className="btn secondary"
+            >
+              + Add To-Do
+            </button>
           </div>
         </div>
       </div>

@@ -1,9 +1,11 @@
 import "./ModalWindow.scss";
+import { useTodos } from "../../TodosContext";
 
 function ModalCloseButton() {
+    const store = useTodos();
   return (
     <>
-      <button className="close-btn">
+      <button onClick={()=>{store.setModals(false)}} className="close-btn">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"

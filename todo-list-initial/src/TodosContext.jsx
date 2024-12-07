@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { createContext } from "react";
 import { useReducer } from "react";
+import { useState } from "react";
 
 export const TodosContext = createContext("");
-
 
 const initialTodos = [
   {
@@ -28,11 +28,19 @@ const initialTodos = [
 
 function TodosProvider(props) {
   const [todos, dispatch] = useReducer(TodosReducer, initialTodos);
+  const [modals, setModals] = useState(false);
 
   return (
     <>
       <main>
-        <TodosContext.Provider value={{ todos, dispatch }}>
+        <TodosContext.Provider
+          value={{
+            todos,
+            dispatch,
+            modals,
+            setModals,
+          }}
+        >
           {props.children}
         </TodosContext.Provider>
       </main>
