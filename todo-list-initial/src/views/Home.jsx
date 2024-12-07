@@ -1,17 +1,20 @@
-import Filter from '../components/Filter.jsx';
-import TodosList from '../components/TodosList.jsx';
+import Filter from "../components/Filter.jsx";
+import AddTodoModal from "../components/modals/AddTodoModal.jsx";
+import ModalWindow from "../components/modals/ModalWindow.jsx";
+import TodosList from "../components/TodosList.jsx";
 
 function Home() {
-
-    return (
+  return (
     <>
-        <div className="container">
-            <Filter />
-        
-            <TodosList />
-        </div>
+      <ModalWindow>
+        <AddTodoModal />
+      </ModalWindow>
+      <div className="container">
+        <Filter />
+        <TodosList />
+      </div>
     </>
-    )
-  }
-  
-  export default Home
+  );
+}
+
+export default Home;
