@@ -31,6 +31,17 @@ function TodosProvider(props) {
   const [modals, setModals] = useState(false);
   const [filterBy, setFilterBy] = useState("todo");
 
+  function filterTodos() {
+    switch (filterBy) {
+      case "todo":
+        return todos.filter((todo) => !todo.isDone);
+      case "done":
+        return todos.filter((todo) => todo.isDone);
+      default:
+        return todos;
+    }
+  }
+
   return (
     <>
       <main>
@@ -42,6 +53,7 @@ function TodosProvider(props) {
             setModals,
             filterBy,
             setFilterBy,
+            filterTodos,
           }}
         >
           {props.children}
@@ -73,8 +85,7 @@ function TodosReducer(todos, action) {
     case "toggle":
       return todos.map((item) => {
         if (item.id === action.elId) {
-          item.isDone != item.isDone;
-          return item;
+          return { ...item, isDone: !item.isDone };
         } else {
           return item;
         }

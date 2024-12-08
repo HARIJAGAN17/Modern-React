@@ -8,9 +8,11 @@ function TodosList() {
   return (
     <>
       <div className="todos">
-        {store.todos.map((item) => (
+        {
+        store.filterTodos().length? store.filterTodos().map((item) => (
           <Todo todo={item} key={item.id} />
-        ))}
+        )) : "No todos here"
+        }
       </div>
     </>
   );
