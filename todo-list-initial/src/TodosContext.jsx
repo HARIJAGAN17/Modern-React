@@ -29,6 +29,7 @@ const initialTodos = [
 function TodosProvider(props) {
   const [todos, dispatch] = useReducer(TodosReducer, initialTodos);
   const [modals, setModals] = useState(false);
+  const [filterBy, setFilterBy] = useState("todo");
 
   return (
     <>
@@ -39,6 +40,8 @@ function TodosProvider(props) {
             dispatch,
             modals,
             setModals,
+            filterBy,
+            setFilterBy,
           }}
         >
           {props.children}
@@ -62,8 +65,10 @@ function TodosReducer(todos, action) {
 
     case "add":
       let newTodo = action.newTodo;
-      newTodo.id =todos.length ? Math.max(...todos.map((item)=>item.id))+1:0;
-      return [...todos,newTodo]
+      newTodo.id = todos.length
+        ? Math.max(...todos.map((item) => item.id)) + 1
+        : 0;
+      return [...todos, newTodo];
 
     case "toggle":
       return todos.map((item) => {
