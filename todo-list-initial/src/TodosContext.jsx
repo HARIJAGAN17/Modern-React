@@ -5,6 +5,7 @@ import { useState } from "react";
 
 export const TodosContext = createContext("");
 
+
 const initialTodos = localStorage.getItem("todos").length
   ? JSON.parse(localStorage.getItem("todos"))
   : [];
