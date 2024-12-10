@@ -1,15 +1,20 @@
-import BooksPage from './views/BooksPage.jsx';
-import SingleBookPage from './views/SingleBookPage.jsx';
-import AddBookPage from './views/AddBookPage.jsx';
+import BooksPage from "./views/BooksPage.jsx";
+import SingleBookPage from "./views/SingleBookPage.jsx";
+import AddBookPage from "./views/AddBookPage.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-
   return (
     <>
-      <BooksPage />
-        
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<BooksPage />} />
+          <Route path="add-book" element={<AddBookPage />} />
+          <Route path="book" element={<SingleBookPage />} />
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
