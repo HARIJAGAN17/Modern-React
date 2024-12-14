@@ -19,7 +19,8 @@ body {
 
 /* form input */
 
-input:not([type="checkbox"]), textarea {
+input:not([type="checkbox"]),
+textarea {
   border-color: #dfdfdf;
   background-color: #fdfcfb;
   color: #393939;
@@ -133,7 +134,7 @@ input:focus {
   right: 10px;
 }
 
-.container a.active button.btn   {
+.container a.active button.btn {
   background: #1cab47;
   color: #fff;
 }
@@ -337,7 +338,7 @@ table tr th {
   align-items: center;
 }
 
-.single-book .book-details input[type=checkbox] {
+.single-book .book-details input[type="checkbox"] {
   width: 20px;
   height: 20px;
   margin-right: 6px;
@@ -362,9 +363,7 @@ table tr th {
     padding-left: 0;
     margin-top: 20px;
   }
-
 }
-
 
 .single-book .book-cover img {
   max-width: 100%;
@@ -387,13 +386,12 @@ table tr th {
   cursor: pointer;
 }
 
-
 .notes .note {
   background-color: #fff;
   margin-bottom: 12px;
   padding: 18px;
   border-radius: 4px;
-  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
@@ -416,10 +414,6 @@ table tr th {
 .notes .note h3 {
   margin-bottom: 12px;
 }
-
-
-
-
 
 @media (max-width: 768px) {
   .books-list {

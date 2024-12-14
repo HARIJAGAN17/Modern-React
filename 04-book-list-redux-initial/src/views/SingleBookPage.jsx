@@ -47,14 +47,14 @@ function SingleBookPage() {
     },
   ];
 
-  const book = books.filter(book => book.id ==id)[0];
+  const book = books.filter((book) => book.id == id)[0];
 
   return (
     <>
       <div className="container">
-       <Link to="/">
-       <button className="btn">← Back to Books</button>
-       </Link>
+        <Link to="/">
+          <button className="btn">← Back to Books</button>
+        </Link>
 
         <div className="single-book">
           <div className="book-cover">
