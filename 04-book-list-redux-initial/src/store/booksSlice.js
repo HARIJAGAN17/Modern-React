@@ -44,7 +44,12 @@ export const booksSlice = createSlice({
     },
   ],
   reducers: {
-    addBook: (books) => {},
+    addBook: (books,action) => {
+        let newBook = action.payload;
+        newBook.id = books.length ? Math.max(...books.map(book=>book.id))+1:1;
+        books.push(newBook);
+        console.log(newBook);
+    },
     eraseBook: (books, action) => {
       return books.filter((books) => books.id != action.payload);
     },
