@@ -50,4 +50,6 @@ export const booksSlice = createSlice({
 
 export const { addBook } = booksSlice.actions;
 
+export const selectBooks = state => state.books;
+
 export default booksSlice.reducer;
