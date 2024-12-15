@@ -45,10 +45,13 @@ export const booksSlice = createSlice({
   ],
   reducers: {
     addBook: (books) => {},
+    eraseBook: (books,action)=>{
+        return books.filter(books=>books.id!=action.payload);
+    },
   },
 });
 
-export const { addBook } = booksSlice.actions;
+export const { addBook,eraseBook } = booksSlice.actions;
 
 export const selectBooks = state => state.books;
 

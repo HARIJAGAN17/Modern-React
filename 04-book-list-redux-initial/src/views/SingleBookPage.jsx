@@ -1,12 +1,21 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import Notes from "../components/Notes.jsx";
-import { useSelector } from "react-redux";
-import { selectBooks } from "../store/booksSlice.js";
+import { useSelector, useDispatch } from "react-redux";
+import { selectBooks, eraseBook } from "../store/booksSlice.js";
 
 function SingleBookPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  function hadndleEraseBook(id) {
+    if (confirm("Are you sure want to delete the book?")) {
+      dispatch(eraseBook(id));
+      navigate("/");
+    }
+  }
+
   const { id } = useParams();
 
-  //checking params
   const books = useSelector(selectBooks);
 
   const book = books.filter((book) => book.id == id)[0];
@@ -33,7 +42,14 @@ function SingleBookPage() {
                 {book.isRead ? "Already Read It" : "Haven't Read it yet"}
               </label>
             </div>
-            <div className="erase-book">Erase book</div>
+            <div
+              onClick={() => {
+                hadndleEraseBook(book.id);
+              }}
+              className="erase-book"
+            >
+              Erase book
+            </div>
           </div>
         </div>
 
