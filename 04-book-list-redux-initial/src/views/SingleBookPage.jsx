@@ -27,33 +27,43 @@ function SingleBookPage() {
           <button className="btn">← Back to Books</button>
         </Link>
 
-        <div className="single-book">
-          <div className="book-cover">
-            <img src={book.cover} />
-          </div>
+        {book ? (
+          <div>
+            <div className="single-book">
+              <div className="book-cover">
+                <img src={book.cover} />
+              </div>
 
-          <div className="book-details">
-            <h3 className="book-title">{book.title}</h3>
-            <h4 className="book-author">{book.author}</h4>
-            <p>{book.synopsis}</p>
-            <div className="read-checkbox">
-              <input type="checkbox" defaultChecked={book.isRead} />
-              <label>
-                {book.isRead ? "Already Read It" : "Haven't Read it yet"}
-              </label>
+              <div className="book-details">
+                <h3 className="book-title">{book.title}</h3>
+                <h4 className="book-author">{book.author}</h4>
+                <p>{book.synopsis}</p>
+                <div className="read-checkbox">
+                  <input type="checkbox" defaultChecked={book.isRead} />
+                  <label>
+                    {book.isRead ? "Already Read It" : "Haven't Read it yet"}
+                  </label>
+                </div>
+                <div
+                  onClick={() => {
+                    hadndleEraseBook(book.id);
+                  }}
+                  className="erase-book"
+                >
+                  Erase book
+                </div>
+              </div>
             </div>
-            <div
-              onClick={() => {
-                hadndleEraseBook(book.id);
-              }}
-              className="erase-book"
-            >
-              Erase book
-            </div>
-          </div>
-        </div>
 
-        <Notes />
+            <Notes />
+          </div>
+        ) : (
+          <div>
+            <p>
+              Book not found. click above button to go back to list of books
+            </p>
+          </div>
+        )}
       </div>
     </>
   );
