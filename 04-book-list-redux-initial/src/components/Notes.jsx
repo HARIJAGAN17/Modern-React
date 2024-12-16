@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
-import { selectNotes,eraseNotes } from "../store/notesSlice";
+import { selectNotes, eraseNotes, addNotes } from "../store/notesSlice";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 
 function Notes(props) {
   const notes = useSelector(selectNotes).filter(
@@ -9,9 +10,33 @@ function Notes(props) {
 
   const dispatch = useDispatch();
 
-  function handleEraseNote(id){
-    if(confirm("Are you sure you want to delete this note?")){
+  function handleEraseNote(id) {
+    if (confirm("Are you sure you want to delete this note?")) {
       dispatch(eraseNotes(id));
+    }
+  }
+
+  const [newNote, setNewNote] = useState({
+    book_id: props.bookId,
+    title: "",
+    text: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewNote((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  function handleBook(e) {
+    e.preventDefault();
+    if (newNote.title && newNote.text) {
+      dispatch(addNotes(newNote));
+      setNewNote({ book_id: props.bookId, title: "", text: "" });
+    } else {
+      alert("Please fill details properly");
     }
   }
   return (
@@ -23,7 +48,14 @@ function Notes(props) {
           <div className="notes">
             {notes.map((note) => (
               <div key={note.id} className="note">
-                <div onClick={()=>{handleEraseNote(note.id)}}  className="erase-note">Erase note</div>
+                <div
+                  onClick={() => {
+                    handleEraseNote(note.id);
+                  }}
+                  className="erase-note"
+                >
+                  Erase note
+                </div>
                 <h3>{note.title}</h3>
                 <p>{note.text}</p>
               </div>
@@ -37,14 +69,33 @@ function Notes(props) {
           <form className="add-note">
             <div className="form-control">
               <label>Title *</label>
-              <input type="text" name="title" placeholder="Add a note title" />
+              <input
+                type="text"
+                name="title"
+                placeholder="Add a note title"
+                value={newNote.title}
+                onChange={handleChange}
+              />
             </div>
             <div className="form-control">
               <label>Note *</label>
-              <textarea type="text" name="note" placeholder="Add note" />
+              <textarea
+                type="text"
+                name="text"
+                placeholder="Add note"
+                value={newNote.text}
+                onChange={handleChange}
+              />
             </div>
 
-            <button className="btn btn-block">Add Note</button>
+            <button
+              onClick={(e) => {
+                handleBook(e);
+              }}
+              className="btn btn-block"
+            >
+              Add Note
+            </button>
           </form>
         </details>
       </div>

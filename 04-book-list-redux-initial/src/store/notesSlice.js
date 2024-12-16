@@ -24,12 +24,12 @@ export const notesSlice = createSlice({
   ],
   reducers: {
     addNotes: (notes, action) => {
-      let newBook = action.payload;
-      newBook.id = notes.length
-        ? Math.max(...notes.map((book) => book.id)) + 1
+      let newNote = action.payload;
+      newNote.id = notes.length
+        ? Math.max(...notes.map((note) => note.id)) + 1
         : 1;
-      notes.push(newBook);
-      console.log(newBook);
+      notes.push(newNote);
+      console.log(newNote);
     },
     eraseNotes: (notes, action) => {
       return notes.filter((note) => note.id != action.payload);
