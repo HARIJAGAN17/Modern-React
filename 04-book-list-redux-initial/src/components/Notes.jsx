@@ -1,11 +1,19 @@
 import { useSelector } from "react-redux";
-import { selectNotes } from "../store/notesSlice";
+import { selectNotes,eraseNotes } from "../store/notesSlice";
+import { useDispatch } from "react-redux";
 
 function Notes(props) {
   const notes = useSelector(selectNotes).filter(
     (note) => note.book_id == props.bookId
   );
 
+  const dispatch = useDispatch();
+
+  function handleEraseNote(id){
+    if(confirm("Are you sure you want to delete this note?")){
+      dispatch(eraseNotes(id));
+    }
+  }
   return (
     <>
       <div className="notes-wrapper">
@@ -15,7 +23,7 @@ function Notes(props) {
           <div className="notes">
             {notes.map((note) => (
               <div key={note.id} className="note">
-                <div className="erase-note">Erase note</div>
+                <div onClick={()=>{handleEraseNote(note.id)}}  className="erase-note">Erase note</div>
                 <h3>{note.title}</h3>
                 <p>{note.text}</p>
               </div>
