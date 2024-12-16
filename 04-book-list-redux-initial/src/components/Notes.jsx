@@ -1,25 +1,29 @@
-import {useSelector} from 'react-redux';
-import { selectNotes } from '../store/notesSlice';
+import { useSelector } from "react-redux";
+import { selectNotes } from "../store/notesSlice";
 
-function Notes() {
-
-  const notes = useSelector(selectNotes);
+function Notes(props) {
+  const notes = useSelector(selectNotes).filter(
+    (note) => note.book_id == props.bookId
+  );
 
   return (
     <>
       <div className="notes-wrapper">
         <h2>Reader's Notes</h2>
 
-        <div className="notes">
-          {notes.map((note) => (
-            <div key={note.id} className="note">
-              <div className="erase-note">Erase note</div>
-              <h3>{note.title}</h3>
-              <p>{note.text}</p>
-            </div>
-          ))}
-        </div>
-
+        {notes.length ? (
+          <div className="notes">
+            {notes.map((note) => (
+              <div key={note.id} className="note">
+                <div className="erase-note">Erase note</div>
+                <h3>{note.title}</h3>
+                <p>{note.text}</p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p>This doesn't have any notes please use below form to add notes.</p>
+        )}
         <details>
           <summary>Add a note</summary>
           <form className="add-note">
