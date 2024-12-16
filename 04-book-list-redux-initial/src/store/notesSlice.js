@@ -34,10 +34,13 @@ export const notesSlice = createSlice({
     eraseNotes: (notes, action) => {
       return notes.filter((note) => note.id != action.payload);
     },
+    eraseBookNotes: (notes, action) => {
+      return notes.filter((note) => note.book_id != action.payload);
+    },
   },
 });
 
-export const { addNotes, eraseNotes } = notesSlice.actions;
+export const { addNotes, eraseNotes, eraseBookNotes } = notesSlice.actions;
 
 export const selectNotes = (state) => state.notes;
 
