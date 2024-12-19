@@ -19,8 +19,8 @@ function LoginPage() {
     ...prev,
     [name]: value,
   }));
-  console.log(userCredentials);
   }
+
 
   function handleSignUp(e){
     e.preventDefault();
@@ -33,7 +33,7 @@ function LoginPage() {
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
-    // console.log(errorCode);
+    console.log(errorCode);
     console.log(errorMessage);
     // ..
   });
