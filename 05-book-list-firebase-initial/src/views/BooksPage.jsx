@@ -6,7 +6,7 @@ import {selectBooks} from '../store/booksSlice.js';
 function BooksPage() {
 
   const books = useSelector(selectBooks);
-  const pageTitle = "📖 Book List with Router, Redux & Firebase";
+  const pageTitle = "📖 Book List with Router,Firebase";
     
     
     return (
