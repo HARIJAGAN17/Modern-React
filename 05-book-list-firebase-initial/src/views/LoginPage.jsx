@@ -1,12 +1,12 @@
 import FullPageLoader from "../components/FullPageLoader.jsx";
 import { useState } from "react";
 import { auth } from "../firebase/config.js";
-import {createUserWithEmailAndPassword } from "firebase/auth";
-
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [loginType, setLoginType] = useState("login");
+  const [error, setError] = useState("");
   const [userCredentials, setUserCredentials] = useState({
     email: "",
     password: "",
@@ -14,32 +14,27 @@ function LoginPage() {
 
   function handleCredentials(e) {
     e.preventDefault();
-   const {name,value} = e.target;
-   setUserCredentials((prev) => ({
-    ...prev,
-    [name]: value,
-  }));
+    const { name, value } = e.target;
+    setUserCredentials((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+    setError("");
   }
 
-
-  function handleSignUp(e){
+  function handleSignUp(e) {
     e.preventDefault();
 
-    createUserWithEmailAndPassword(auth, userCredentials.email, userCredentials.password)
-  .then((userCredential) => {
-    const user = userCredential.user;
-    console.log(user);
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage);
-    // ..
-  });
-
-
-
+    createUserWithEmailAndPassword(
+      auth,
+      userCredentials.email,
+      userCredentials.password
+    )
+      .then((userCredential) => {})
+      .catch((error) => {
+        console.log(error.message)
+        setError(error.message);
+      });
   }
 
   return (
@@ -90,9 +85,14 @@ function LoginPage() {
             {loginType == "login" ? (
               <button className="active btn btn-block">Login</button>
             ) : (
-              <button onClick={(e)=>handleSignUp(e)} className="active btn btn-block">Sign Up</button>
+              <button
+                onClick={(e) => handleSignUp(e)}
+                className="active btn btn-block"
+              >
+                Sign Up
+              </button>
             )}
-
+            {error && <div className="error">{error}</div>}
             <p className="forgot-password">Forgot Password?</p>
           </form>
         </section>
