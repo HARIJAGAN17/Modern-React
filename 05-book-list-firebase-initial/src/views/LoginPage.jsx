@@ -30,9 +30,11 @@ function LoginPage() {
       userCredentials.email,
       userCredentials.password
     )
-      .then((userCredential) => {})
+      .then((userCredential) => {
+        setUserCredentials({ email: "", password: "" });
+      })
       .catch((error) => {
-        console.log(error.message)
+        console.log(error.message);
         setError(error.message);
       });
   }
@@ -69,6 +71,7 @@ function LoginPage() {
                 type="text"
                 name="email"
                 placeholder="Enter your email"
+                value={userCredentials.email}
               />
             </div>
             <div className="form-control">
@@ -80,6 +83,7 @@ function LoginPage() {
                 type="password"
                 name="password"
                 placeholder="Enter your password"
+                value={userCredentials.password}
               />
             </div>
             {loginType == "login" ? (
