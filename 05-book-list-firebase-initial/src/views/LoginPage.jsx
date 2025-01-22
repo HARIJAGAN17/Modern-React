@@ -6,8 +6,12 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
 } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUser } from "../store/userSlice.js";
 
 function LoginPage() {
+  const dispatch = useDispatch();
+
   const [isLoading, setIsLoading] = useState(false);
   const [loginType, setLoginType] = useState("login");
   const [error, setError] = useState("");
@@ -53,7 +57,12 @@ function LoginPage() {
     )
       .then((userCredential) => {
         // Signed in
-        const user = userCredential.user;
+        dispatch(
+          addUser({
+            id: userCredential.user.uid,
+            email: userCredential.user.email,
+          })
+        );
         console.log("Logged in successfully");
         // ...
       })
@@ -137,14 +146,16 @@ function LoginPage() {
               </button>
             )}
             {error && <div className="error">{error}</div>}
-            {loginType == "login" && <p
-              onClick={() => {
-                handlePasswordReset();
-              }}
-              className="forgot-password"
-            >
-              Forgot Password?
-            </p>}
+            {loginType == "login" && (
+              <p
+                onClick={() => {
+                  handlePasswordReset();
+                }}
+                className="forgot-password"
+              >
+                Forgot Password?
+              </p>
+            )}
           </form>
         </section>
       </div>
