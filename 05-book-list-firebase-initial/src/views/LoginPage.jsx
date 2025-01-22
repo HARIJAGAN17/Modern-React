@@ -4,6 +4,7 @@ import { auth } from "../firebase/config.js";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 function LoginPage() {
@@ -59,6 +60,17 @@ function LoginPage() {
       .catch((error) => {
         const errorMessage = error.message;
         setError(errorMessage);
+      });
+  }
+
+  function handlePasswordReset() {
+    const email = prompt("Please enter your email");
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        console.log("Password reset mail sent");
+      })
+      .catch((error) => {
+        console.log(error.message);
       });
   }
 
@@ -125,7 +137,14 @@ function LoginPage() {
               </button>
             )}
             {error && <div className="error">{error}</div>}
-            <p className="forgot-password">Forgot Password?</p>
+            <p
+              onClick={() => {
+                handlePasswordReset();
+              }}
+              className="forgot-password"
+            >
+              Forgot Password?
+            </p>
           </form>
         </section>
       </div>
