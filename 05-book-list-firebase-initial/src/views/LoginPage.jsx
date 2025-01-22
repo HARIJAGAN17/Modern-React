@@ -137,14 +137,14 @@ function LoginPage() {
               </button>
             )}
             {error && <div className="error">{error}</div>}
-            <p
+            {loginType == "login" && <p
               onClick={() => {
                 handlePasswordReset();
               }}
               className="forgot-password"
             >
               Forgot Password?
-            </p>
+            </p>}
           </form>
         </section>
       </div>
