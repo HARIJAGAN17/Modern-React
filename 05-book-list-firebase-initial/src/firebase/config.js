@@ -1,13 +1,13 @@
 import { initializeApp } from "firebase/app";
-import {getAuth} from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBYP_NUEr_Yh8YF1_Ge2q71rWFdEAfywbA",
-  authDomain: "book-list-with-fb.firebaseapp.com",
-  projectId: "book-list-with-fb",
-  storageBucket: "book-list-with-fb.firebasestorage.app",
-  messagingSenderId: "120521283820",
-  appId: "1:120521283820:web:939c1ccbaa2ec87a6c2dc9",
+  apiKey: "AIzaSyDlvijdLkGnKAu7J0B_E-rA11sj5BUFhjI",
+  authDomain: "booklist-react-app.firebaseapp.com",
+  projectId: "booklist-react-app",
+  storageBucket: "booklist-react-app.firebasestorage.app",
+  messagingSenderId: "592205378552",
+  appId: "1:592205378552:web:07da82488bc2ae1213dc0d",
 };
 
 const app = initializeApp(firebaseConfig);

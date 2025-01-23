@@ -5,11 +5,25 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/userSlice.js";
 
 function LoginPage() {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      dispatch(
+        addUser({
+          id: user.uid,
+          email: user.email,
+        })
+      );
+    } else {
+      dispatch(addUser(null));
+    }
+  });
+
   const dispatch = useDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -37,15 +51,10 @@ function LoginPage() {
       auth,
       userCredentials.email,
       userCredentials.password
-    )
-      .then((userCredential) => {
-        setUserCredentials({ email: "", password: "" });
-        console.log("User created sucessfully");
-      })
-      .catch((error) => {
-        console.log(error.message);
-        setError(error.message);
-      });
+    ).catch((error) => {
+      console.log(error.message);
+      setError(error.message);
+    });
   }
 
   function handleLogin(e) {
@@ -55,14 +64,8 @@ function LoginPage() {
       userCredentials.email,
       userCredentials.password
     )
-      .then((userCredential) => {
+      .then(() => {
         // Signed in
-        dispatch(
-          addUser({
-            id: userCredential.user.uid,
-            email: userCredential.user.email,
-          })
-        );
         console.log("Logged in successfully");
         // ...
       })
