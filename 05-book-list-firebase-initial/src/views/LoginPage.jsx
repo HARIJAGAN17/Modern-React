@@ -22,11 +22,14 @@ function LoginPage() {
     } else {
       dispatch(addUser(null));
     }
+    if (isLoading) {
+      setIsLoading(false);
+    }
   });
 
   const dispatch = useDispatch();
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [loginType, setLoginType] = useState("login");
   const [error, setError] = useState("");
   const [userCredentials, setUserCredentials] = useState({
