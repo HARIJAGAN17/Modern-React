@@ -26,6 +26,22 @@ export const booksSlice = createSlice({
       });
     },
   },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooks.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.books = action.payload;
+        console.log("Successfully loaded");
+      })
+      .addCase(fetchBooks.pending, (state) => {
+        state.status = "loading";
+        console.log("Loading..");
+      })
+      .addCase(fetchBooks.rejected, (state, action) => {
+        state.status = "failed";
+        console.log(action.payload.message);
+      });
+  },
 });
 
 export const { addBook, eraseBook, toggleRead } = booksSlice.actions;

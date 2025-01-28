@@ -8,7 +8,7 @@ import { selectBooks,fetchBooks } from "../store/booksSlice.js";
 function BooksPage() {
 
   const dispatch = useDispatch();
-  const pageTitle = "📖 Book List with Router,Firebase";co
+  const pageTitle = "📖 Book List with Router,Firebase";
 
   const books = useSelector(selectBooks).books;
   const bookStatus = useSelector(selectBooks).status;
