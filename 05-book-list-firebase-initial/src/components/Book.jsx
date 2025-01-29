@@ -1,14 +1,16 @@
+/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
-import {toggleRead} from '../store/booksSlice.js';
-  
+import { toggleRead } from '../store/booksSlice';  
+
+
 function Book({book}) {
     
     const dispatch = useDispatch();
     
     function handleToggleRead(e, id) {
         e.preventDefault();
-        dispatch(toggleRead(id));
+        dispatch(toggleRead({id}));
     }
 
     return (
