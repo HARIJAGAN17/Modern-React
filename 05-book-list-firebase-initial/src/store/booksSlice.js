@@ -7,6 +7,7 @@ import {
   doc,
   updateDoc,
   deleteDoc,
+  addDoc,
 } from "firebase/firestore";
 import { auth, db } from "../firebase/config";
 export const booksSlice = createSlice({
@@ -16,22 +17,12 @@ export const booksSlice = createSlice({
     status: "idle",
   },
   reducers: {
-    addBook: (books, action) => {
-      let newBook = action.payload;
-      newBook.id = books.length
-        ? Math.max(...books.map((book) => book.id)) + 1
-        : 1;
-      books.push(newBook);
-    },
-    // eraseBook: (books, action) => {
-    //   return books.filter((book) => book.id != action.payload);
-    // },
-    // toggleRead: (books, action) => {
-    //   books.map((book) => {
-    //     if (book.id == action.payload) {
-    //       book.isRead = !book.isRead;
-    //     }
-    //   });
+    // addBook: (books, action) => {
+    //   let newBook = action.payload;
+    //   newBook.id = books.length
+    //     ? Math.max(...books.map((book) => book.id)) + 1
+    //     : 1;
+    //   books.push(newBook);
     // },
   },
   extraReducers: (builder) => {
@@ -68,11 +59,17 @@ export const booksSlice = createSlice({
       .addCase(eraseBook.rejected, (state, action) => {
         state.status = "failed";
         console.log(action.payload.message);
+      })
+      .addCase(addBook.fulfilled, (state, action) => {
+        console.log("succesfully added");
+        state.books.push(action.payload);
+      })
+      .addCase(addBook.rejected, (state, action) => {
+        state.status = "failed";
+        console.log(action.payload.message);
       });
   },
 });
-
-export const { addBook } = booksSlice.actions;
 
 export const selectBooks = (state) => state.books;
 
@@ -110,3 +107,11 @@ export const eraseBook = createAsyncThunk(
     return payload;
   }
 );
+
+export const addBook = createAsyncThunk("books/addBook", async (payload) => {
+  let newBook = payload;
+  newBook.user_id = auth.currentUser.uid;
+  const docRef = await addDoc(collection(db, "books"), newBook);
+  newBook.id = docRef.id;
+  return newBook;
+});
