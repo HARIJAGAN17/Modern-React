@@ -30,38 +30,45 @@ export const booksSlice = createSlice({
       .addCase(fetchBooks.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.books = action.payload;
-        console.log("Successfully loaded");
       })
       .addCase(fetchBooks.pending, (state) => {
         state.status = "loading";
-        console.log("Loading..");
       })
       .addCase(fetchBooks.rejected, (state, action) => {
         state.status = "failed";
         console.log(action.payload.message);
       })
       .addCase(toggleRead.fulfilled, (state, action) => {
-        console.log("succesfully updated");
         state.books.map((book) => {
           if (book.id == action.payload) {
             book.isRead = !book.isRead;
           }
         });
+        state.status = "succeeded";
+      })
+      .addCase(toggleRead.pending, (state) => {
+        state.status = "loading";
       })
       .addCase(toggleRead.rejected, (state, action) => {
         state.status = "failed";
         console.log(action.payload.message);
       })
+      .addCase(eraseBook.pending, (state) => {
+        state.status = "loading";
+      })
       .addCase(eraseBook.fulfilled, (state, action) => {
-        console.log("succesfully deleted");
+        state.status = "succeeded";
         state.books = state.books.filter((book) => book.id != action.payload);
       })
       .addCase(eraseBook.rejected, (state, action) => {
         state.status = "failed";
         console.log(action.payload.message);
       })
+      .addCase(addBook.pending, (state) => {
+        state.status = "loading";
+      })
       .addCase(addBook.fulfilled, (state, action) => {
-        console.log("succesfully added");
+        state.status = "succeeded";
         state.books.push(action.payload);
       })
       .addCase(addBook.rejected, (state, action) => {
