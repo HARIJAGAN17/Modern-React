@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { eraseBook, toggleRead } from "../store/booksSlice.js";
 import { eraseBookNotes } from "../store/notesSlice.js";
 import { useEffect, useState } from "react";
-import { doc,getDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/config.js";
 
 function SingleBookPage() {
@@ -23,6 +23,12 @@ function SingleBookPage() {
     }
   }
 
+  function handleToggleRead(info) {
+    dispatch(toggleRead({ id: info.id, isRead: !info.isRead }));
+    setBook({ ...book, isRead: !info.isRead});
+    console.log(book);
+  }
+
   const { id } = useParams();
 
   const fetchBooks = async (book_id) => {
@@ -31,10 +37,10 @@ function SingleBookPage() {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        setBook({...docSnap.data(),id:docSnap.id});
-        console.log(docSnap.data());
+        setBook({ ...docSnap.data(), id: docSnap.id });
       }
-      setFetchBookStatus("succeed");
+      setFetchBookStatus("success");
+      
     } catch (error) {
       setFetchBookStatus("error");
       console.log(error);
@@ -71,9 +77,7 @@ function SingleBookPage() {
                 <div className="read-checkbox">
                   <input
                     onClick={() => {
-                      dispatch(
-                        toggleRead({ id: book.id, isRead: book.isRead })
-                      );
+                      handleToggleRead({ id: book.id, isRead: book.isRead });
                     }}
                     type="checkbox"
                     defaultChecked={book.isRead}
