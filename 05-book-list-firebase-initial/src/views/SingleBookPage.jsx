@@ -1,8 +1,11 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
 import Notes from "../components/Notes.jsx";
-import { useSelector, useDispatch } from "react-redux";
-import { selectBooks, eraseBook, toggleRead } from "../store/booksSlice.js";
+import { useDispatch } from "react-redux";
+import { eraseBook, toggleRead } from "../store/booksSlice.js";
 import { eraseBookNotes } from "../store/notesSlice.js";
+import { useEffect, useState } from "react";
+import { doc,getDoc } from "firebase/firestore";
+import { db } from "../firebase/config.js";
 
 function SingleBookPage() {
   const dispatch = useDispatch();
@@ -22,9 +25,30 @@ function SingleBookPage() {
 
   const { id } = useParams();
 
-  const books = useSelector(selectBooks).books;
+  const fetchBooks = async (book_id) => {
+    try {
+      const docRef = doc(db, "books", book_id);
+      const docSnap = await getDoc(docRef);
 
-  const book = books.filter((book) => book.id == id)[0];
+      if (docSnap.exists()) {
+        setBook({...docSnap.data(),id:docSnap.id});
+        console.log(docSnap.data());
+      }
+      setFetchBookStatus("succeed");
+    } catch (error) {
+      setFetchBookStatus("error");
+      console.log(error);
+    }
+  };
+
+  const [book, setBook] = useState("");
+  const [fetchBookStatus, setFetchBookStatus] = useState("idle");
+
+  useEffect(() => {
+    if (fetchBookStatus == "idle") {
+      fetchBooks(id);
+    }
+  }, []);
 
   return (
     <>
