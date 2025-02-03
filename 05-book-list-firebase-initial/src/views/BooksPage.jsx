@@ -24,11 +24,12 @@ function BooksPage() {
       <div className="container">
         <Header pageTitle={pageTitle} />
         <div className="books-container">
+          {bookStatus=="Loading" ? "Loading..." :
           <div className="books-list">
-            {books.map((book) => (
-              <Book key={book.id} book={book} />
-            ))}
-          </div>
+          {books.map((book) => (
+            <Book key={book.id} book={book} />
+          ))}
+        </div>}
         </div>
       </div>
     </>
