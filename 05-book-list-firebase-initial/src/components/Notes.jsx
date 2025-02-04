@@ -1,13 +1,9 @@
-import { useDispatch } from "react-redux";
-import { eraseNote, addNote } from "../store/notesSlice.js";
 import { useEffect, useState } from "react";
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
 import { db } from "../firebase/config.js";
 import { doc, deleteDoc } from "firebase/firestore";
 
 function Notes({ bookId }) {
-  const dispatch = useDispatch();
-
   const handleEraseNote = async (id) => {
     if (confirm("Are you sure you want to erase this note?")) {
       try {
