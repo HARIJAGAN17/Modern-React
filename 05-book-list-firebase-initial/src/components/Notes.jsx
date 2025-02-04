@@ -3,15 +3,21 @@ import { eraseNote, addNote } from "../store/notesSlice.js";
 import { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../firebase/config.js";
+import { doc, deleteDoc } from "firebase/firestore";
 
 function Notes({ bookId }) {
   const dispatch = useDispatch();
 
-  function handleEraseNote(id) {
+  const handleEraseNote = async (id) => {
     if (confirm("Are you sure you want to erase this note?")) {
-      dispatch(eraseNote(id));
+      try {
+        await deleteDoc(doc(db, "notes", id));
+        setNotes(notes.filter(note => note.id !== id));
+      } catch (error) {
+        alert("Error in deleting the notes");
+      }
     }
-  }
+  };
 
   function handleAddNote(e) {
     e.preventDefault();
