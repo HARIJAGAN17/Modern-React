@@ -17,13 +17,6 @@ export const booksSlice = createSlice({
     status: "idle",
   },
   reducers: {
-    // addBook: (books, action) => {
-    //   let newBook = action.payload;
-    //   newBook.id = books.length
-    //     ? Math.max(...books.map((book) => book.id)) + 1
-    //     : 1;
-    //   books.push(newBook);
-    // },
   },
   extraReducers: (builder) => {
     builder
