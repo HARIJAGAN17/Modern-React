@@ -68,9 +68,6 @@ function LoginPage() {
       userCredentials.password
     )
       .then(() => {
-        // Signed in
-        console.log("Logged in successfully");
-        // ...
       })
       .catch((error) => {
         const errorMessage = error.message;
