@@ -1,28 +1,41 @@
-import data from './data.js' ;
+import data from "./data.js";
 
 const students = JSON.parse(data);
 console.log(students);
 
-function addRow(table) {
-    
-    let tr = table.querySelector("tbody").insertRow();
-    const name = tr.insertCell();
-    name.appendChild(document.createTextNode("Elena Garcia"));
+interface Student {
+  id: string;
+  dateAdmission: string;
+  firstName: string;
+  lastName: string;
+  birthYear: string;
+  focusArea?: string | string[];
+  dateRegistrationSuspended?: string;
+}
 
-    const age = tr.insertCell();
-    age.appendChild(document.createTextNode("33"));
+function addRow(table: HTMLTableElement, student: Student) {
+  let tr = table.querySelector("tbody").insertRow();
+  const name = tr.insertCell();
+  name.appendChild(
+    document.createTextNode(`${student.firstName} ${student.lastName}`)
+  );
 
-    const majors = tr.insertCell();
-    majors.appendChild(document.createTextNode("Space Engineering, Civil Engineering"));
+  const age = tr.insertCell();
+  age.appendChild(document.createTextNode("33"));
 
-    const status = tr.insertCell();
-    status.appendChild(document.createTextNode("Active"));
+  const majors = tr.insertCell();
+  majors.appendChild(
+    document.createTextNode("Space Engineering, Civil Engineering")
+  );
+
+  const status = tr.insertCell();
+  status.appendChild(document.createTextNode("Active"));
 }
 
 // select HTML table
 function selectTable() {
-    return document.querySelector("#students-table");
+  return document.querySelector("#students-table") as HTMLTableElement;
 }
 
 // add a row
-addRow(selectTable());
+addRow(selectTable(), students[0]);
